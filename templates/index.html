@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ricardo Rizk — Portfolio</title>
+  <!-- Google Fonts for modern typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='favicon.svg') }}">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header class="navbar-header">
+    <div class="logo">
+      <a href="#" data-target="home">ricardo.</a>
+    </div>
+    
+    <!-- Hamburger Button (Mobile Toggle) -->
+    <button class="nav-toggle" aria-label="toggle navigation" id="navToggle">
+      <span class="hamburger-bar"></span>
+      <span class="hamburger-bar"></span>
+      <span class="hamburger-bar"></span>
+    </button>
+
+    <nav class="nav-menu" id="navMenu">
+      <a href="#" class="nav-link active" data-target="home">Home</a>
+      <a href="#" class="nav-link" data-target="about">About</a>
+      <a href="#" class="nav-link" data-target="projects">Projects</a>
+      <a href="#" class="nav-link" data-target="resume">Resume</a>
+    </nav>
+  </header>
+
+  <!-- Page Content Container -->
+  <main class="content-container">
+    
+    <!-- Home Page -->
+    <section id="home" class="page-section active">
+      <h1>Ricardo Rizk</h1>
+      <p class="hero-subtitle">{{ data.home.subtitle }}</p>
+      <p class="hero-description">{{ data.home.description }}</p>
+      
+      <div class="contact-card">
+        <div class="contact-item">
+          <span class="contact-label">Location</span>
+          <span class="contact-value">{{ data.home.location }}</span>
+        </div>
+        <div class="contact-item">
+          <span class="contact-label">Email</span>
+          <a href="mailto:{{ data.home.email }}" class="contact-value link">{{ data.home.email }}</a>
+        </div>
+        <div class="contact-item">
+          <span class="contact-label">Phone</span>
+          <a href="tel:{{ data.home.phone }}" class="contact-value link">{{ data.home.phone }}</a>
+        </div>
+        <div class="contact-item">
+          <span class="contact-label">GitHub</span>
+          <a href="https://github.com/{{ data.home.github }}" target="_blank" rel="noopener" class="contact-value link">github.com/{{ data.home.github }}</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Page -->
+    <section id="about" class="page-section">
+      <h1>My Story</h1>
+      <p class="about-subtitle">{{ data.about.subtitle }}</p>
+      
+      <div class="about-content">
+        {% for paragraph in data.about.description %}
+          <p class="about-text">{{ paragraph }}</p>
+        {% endfor %}
+      </div>
+
+      <div class="hobbies-container">
+        <h2>What else I do</h2>
+        <div class="hobbies-grid">
+          {% for hobby, hobby_desc in data.about.whatelseido.items() %}
+            <div class="hobby-card">
+              <h3>{{ hobby }}</h3>
+              <p>{{ hobby_desc }}</p>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Page -->
+    <section id="projects" class="page-section">
+      <h1>Featured Projects</h1>
+      
+      <div class="projects-list">
+        {% for project in data.projects %}
+          <div class="project-item">
+            <div class="project-header">
+              <h3>{{ project.title }}</h3>
+              <span class="project-date">{{ project.date }}</span>
+            </div>
+            <p class="project-description">{{ project.description }}</p>
+            <div class="project-footer">
+              <div class="project-tech">
+                {% for tech in project.technologies %}
+                  <span class="tech-tag">{{ tech }}</span>
+                {% endfor %}
+              </div>
+              <div class="project-links">
+                <a href="{{ project.github }}" target="_blank" rel="noopener" class="project-link">GitHub</a>
+                {% if project.website %}
+                  <a href="{{ project.website }}" target="_blank" rel="noopener" class="project-link live">Live Site</a>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </section>
+
+    <!-- Resume Page -->
+    <section id="resume" class="page-section">
+      <h1>Resume</h1>
+
+      <!-- 1. Experience & Education Row (Side-by-side) -->
+      <div class="resume-row-grid">
+        <div class="resume-section">
+          <h2>Experience</h2>
+          <div class="timeline">
+            {% for exp in data.resume.experience %}
+              <div class="timeline-item">
+                <div class="timeline-meta">
+                  <span class="timeline-date">{{ exp.when }}</span>
+                  <span class="timeline-separator">&middot;</span>
+                  <span class="timeline-location">{{ exp.where }}</span>
+                </div>
+                <h3>{{ exp.title }}</h3>
+                <p class="timeline-desc">{{ exp.description }}</p>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+
+        <div class="resume-section">
+          <h2>Education</h2>
+          <div class="timeline">
+            {% for edu in data.resume.education %}
+              <div class="timeline-item">
+                <div class="timeline-meta">
+                  <span class="timeline-date">{{ edu.when }}</span>
+                  <span class="timeline-separator">&middot;</span>
+                  <span class="timeline-location">{{ edu.where }}</span>
+                </div>
+                <h3>{{ edu.title }}</h3>
+                <p class="timeline-subtitle">{{ edu.subtitle }}</p>
+                {% if edu.note %}
+                  <p class="timeline-note"><strong>Note:</strong> {{ edu.note }}</p>
+                {% endif %}
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. Skills & Languages Row (Side-by-side) -->
+      <div class="resume-row-grid skills-lang-row">
+        <div class="resume-section">
+          <h2>Soft Skills</h2>
+          <div class="skills-grid">
+            {% for skill, desc in data.resume.softskills.items() %}
+              <div class="skill-card">
+                <h4>{{ skill }}</h4>
+                <p>{{ desc }}</p>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+
+        <div class="resume-section">
+          <h2>Languages</h2>
+          <div class="languages-grid">
+            {% for level, langs in data.resume.languages.items() %}
+              <div class="lang-card">
+                <h4>{{ level }}</h4>
+                <p>{{ langs | join(', ') }}</p>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. Awards & Accomplishments Section (3-column layout) -->
+      <div class="resume-section awards-section">
+        <h2>Awards & Accomplishments</h2>
+        <div class="resume-awards-grid">
+          <div class="acc-category">
+            <h3>Sports</h3>
+            <ul>
+              {% for award in data.resume.prizesawardsandaccomplishments.Sports %}
+                <li>
+                  <div class="award-header">
+                    <strong>{{ award.title }}</strong>
+                    <span class="award-date">{{ award.date }}</span>
+                  </div>
+                  <p>{{ award.description }}</p>
+                </li>
+              {% endfor %}
+            </ul>
+          </div>
+
+          <div class="acc-category">
+            <h3>Music</h3>
+            <ul>
+              {% for award in data.resume.prizesawardsandaccomplishments.Music %}
+                <li>
+                  <div class="award-header">
+                    <strong>{{ award.title }}</strong>
+                    <span class="award-date">{{ award.date }}</span>
+                  </div>
+                  <p>{{ award.description }}</p>
+                </li>
+              {% endfor %}
+            </ul>
+          </div>
+
+          <div class="acc-category">
+            <h3>School</h3>
+            <ul>
+              {% for award in data.resume.prizesawardsandaccomplishments.School %}
+                <li>
+                  <div class="award-header">
+                    <strong>{{ award.title }}</strong>
+                    <span class="award-date">{{ award.date }}</span>
+                  </div>
+                  <p>{{ award.description }}</p>
+                </li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Courses & Bootcamps Section -->
+      <div class="resume-section courses-section">
+        <h2>Courses & Certifications</h2>
+        <div class="courses-grid">
+          {% for course, info in data.resume.courses.items() %}
+            <div class="course-card">
+              <div class="course-header">
+                <h3>
+                  {% if info[0] %}
+                    <a href="{{ info[0] }}" target="_blank" rel="noopener" class="course-link-url">{{ course }}</a>
+                  {% else %}
+                    {{ course }}
+                  {% endif %}
+                </h3>
+                <span class="course-date">{{ info[2] }}</span>
+              </div>
+              <p class="course-instructor">Instructor: {{ info[1] }}</p>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Navigation and Page Switcher Script -->
+  <script>
+    const navToggle = document.getElementById('navToggle');
+    const navMenu = document.getElementById('navMenu');
+
+    // Toggle menu active state on hamburger click
+    navToggle.addEventListener('click', () => {
+      navToggle.classList.toggle('active');
+      navMenu.classList.toggle('active');
+    });
+
+    // Handle Page Switching
+    document.querySelectorAll('[data-target]').forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const targetId = link.getAttribute('data-target');
+        
+        // Update active class on nav links
+        document.querySelectorAll('.nav-link').forEach(nav => nav.classList.remove('active'));
+        const correspondingNavLink = document.querySelector(`.nav-link[data-target="${targetId}"]`);
+        if (correspondingNavLink) {
+          correspondingNavLink.classList.add('active');
+        }
+
+        // Close mobile menu if open
+        navToggle.classList.remove('active');
+        navMenu.classList.remove('active');
+
+        // Toggle active class on sections
+        document.querySelectorAll('.page-section').forEach(section => {
+          if (section.id === targetId) {
+            section.classList.add('active');
+          } else {
+            section.classList.remove('active');
+          }
+        });
+
+        // Scroll to top of content
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    });
+  </script>
+</body>
+</html>

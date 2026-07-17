@@ -1,0 +1,210 @@
+{
+  "home": {
+    "subtitle": "Driven by curiosity, fueled by logic.",
+    "description": "I am a young developer who thrives at the intersection of learning and building. With a reputation for staying focused under pressure and a commitment to reliability, I enjoy breaking down complex problems into functional code.",
+    "location": "Ottawa, ON, Canada",
+    "email": "ricardorizk13@gmail.com",
+    "phone": "+1 (613) 276-7610",
+    "github": "rickyrcoding"
+  },
+  "about": {
+    "subtitle": "Developer, Student, and Problem Solver",
+    "description": [
+      "I am a 13-year-old motivated developer based in Ottawa, passionate about building clean, efficient, and user-centric applications. My journey in software development is driven by a constant desire to learn and tackle complex challenges.",
+      "My coding journey began at age six, sparked by my dad’s introduction to Python. What started as a childhood curiosity quickly evolved into a deep dive into the full-stack ecosystem. After mastering HTML, CSS, and JavaScript, I explored mobile development with Dart and Flutter, eventually specializing in modern web frameworks like React, Next.js, Vue, and Nuxt.js. Today, I’ve come full circle by advancing my Python skills into backend architecture using Flask, allowing me to build seamless, end-to-end digital experiences.",
+      "Currently, I focus on full-stack development, exploring new technologies and refining my skills through both academic and personal projects. I believe in the power of code to solve real-world problems and create meaningful experiences."
+    ],
+    "whatelseido": {
+      "Music (Guitar, Flute, Piano & Digital composition)": "Enjoy creating new tunes and learning new techniques on instruments.",
+      "Sports": "Enjoy riding my bike, playing basketball & ultimate frisbee, and practicing my physical activity.",
+      "Reading": "Love sinking into a good book, discovering different perspectives in characters, and expanding my vocabulary.",
+      "Skill toys": "I like to learn new things, and skill toys are a satisfying way of doing that. I do yoyo tricks, perform flourishes with a slinky, and quickly solve rubik's cubes!"
+    }
+  },
+  "resume": {
+    "softskills": {
+      "Problem Solving": "Ability to break down complex coding challenges into manageable steps.",
+      "Communication": "Making complex technology easy to understand for all stakeholders.",
+      "Teamwork": "Collaborating with teammates on a multitude of group projects.",
+      "Adaptability": "Quickly learning new languages and frameworks as needed."
+    },
+    "experience": [
+      {
+        "title": "Ottawa Food Bank (Community Work)",
+        "when": "Summer 2025",
+        "where": "Ottawa, ON",
+        "description": "Collected and sorted food distribution to families in need."
+      },
+      {
+        "title": "Library Assistant at OCSB (Volunteer)",
+        "when": "Summer 2024",
+        "where": "Ottawa, ON",
+        "description": "Assisted school librarian in preparing chromebooks for student use."
+      }
+    ],
+    "education": [
+      {
+        "title": "\u00c9cole secondaire catholique Pierre-Savard",
+        "subtitle": "Secondary School",
+        "when": "2024 - Present",
+        "where": "Ottawa, ON",
+        "note": "Enrichi program: An accelerated academic track for high-potential Grade 7 and 8 students."
+      },
+      {
+        "title": "\u00c9cole primaire catholique Pierre-Elliott-Trudeau",
+        "subtitle": "Primary School",
+        "when": "2018 - 2024",
+        "where": "Ottawa, ON"
+      }
+    ],
+    "languages": {
+      "Fully Bilingual": ["English", "French"],
+      "Intermediate": ["Arabic"]
+    },
+    "prizesawardsandaccomplishments": {
+      "School": [
+        {
+          "title": "Prix de Catholisisme",
+          "description": "Graduation of 6th grade",
+          "date": "June 2024"
+        },
+        {
+          "title": "Projet Educatif Personel",
+          "description": "Enriching school project fair",
+          "date": "May 2024"
+        },
+        {
+          "title": "Tournoi des Savants en Herbe (3rd place)",
+          "description": "CECCE school trivia competition",
+          "date": "April 2024"
+        }
+      ],
+      "Music": [
+        {
+          "title": "RCM Level 3, 5, and 7 Piano Practical Examination (First Class Honours)",
+          "description": "Royal Conservatory of Music",
+          "date": "September 2021, July 2022, September 2023"
+        }
+      ],
+      "Sports": [
+        {
+          "title": "WKC PAN-AM Championship (Bronze Medal)",
+          "description": "Competed in World Karate Commission Pan-American Championships",
+          "date": "August 2025"
+        },
+        {
+          "title": "Advancement To The Rank of Green Belt in Karate",
+          "description": "Achieved certification for advancing in martial arts",
+          "date": "June 2025"
+        },
+        {
+          "title": "Swim Kids Level 8 Certification",
+          "description": "Completed advanced swimming skills and safety training",
+          "date": "December 2024"
+        },
+        {
+          "title": "Douvris In House Tournament (Gold Medal)",
+          "description": "Won a gold medal in a sports competition",
+          "date": "November 2024"
+        }
+      ]
+    },
+    "courses": {
+      "100 Days of Code™: The Complete Python Pro Bootcamp": [
+        "https://www.udemy.com/share/103IHM3@bTi5beJQJMwZ7aF5dhEcOu3B0UjasfjMyQgFFZp9GecsZysbygSHhIcjeF85U5fM/",
+        "Dr. Angela Yu",
+        "2025-2026"
+      ],
+      "Complete SQL and Databases Bootcamp": [
+        "https://www.udemy.com/share/103yFs3@FvU3tw6qBDe69Z524f4ozHSHto4pX6tZ5RsMcCbvcbc2yuhw2YpIJeVMmjRQpvbB/",
+        "ZTM",
+        "2025"
+      ],
+      "Vue.js Crash Course": [
+        "https://youtu.be/VeNfHj6MhgA?si=DKy89s43gWXTIHp5",
+        "Traversy Media",
+        "2024"
+      ],
+      "Nuxt 3": [
+        "https://youtu.be/hj3NNlTqIJg?si=4h0CbVEENgQfLKSr",
+        "G (Guillaume Duhan)",
+        "2024"
+      ],
+      "React - The Complete Guide": [
+        "https://www.udemy.com/share/101Way3@pHFIBcPzU6kjwq9rMupwQw68agafLYHd7k3EMOBuuiq6G_4kJc_cxLfvkTpfd66N/",
+        "Academind",
+        "2022-2023"
+      ],
+      "Flutter & Dart - The Complete Guide": [
+        "https://www.udemy.com/share/101rfI3@1NW9DBPoB4vsC_goHkN1axFBTZTWQCO5OPp9wYhdumy2P4-tvYI0QA0-TFTEFVEP/",
+        "Academind",
+        "2022"
+      ],
+      "Git Tutorial for Beginners": [
+        "https://youtu.be/8JJ101D3knE?si=wFLFtYDrYKXVtG3g",
+        "Programming with Mosh",
+        "2022"
+      ],
+      "Complete Web Developer (Discontinued)": ["", "ZTM", "2021-2022"],
+      "The Complete Python Developer": [
+        "https://www.udemy.com/share/101URo3@lukuBXkMTLhQAygL4k8weSk95ULIDCwruuPcju4--5yUwN45cc9ztk4wDluZNtRY/",
+        "ZTM",
+        "2020"
+      ],
+      "Python for Kids: A Playful Introduction to Programming": [
+        "https://a.co/d/08mMBpFV",
+        "Jason R. Briggs",
+        "2019"
+      ]
+    }
+  },
+  "projects": [
+    {
+      "title": "Morse Code Academy",
+      "date": "July 2026",
+      "description": "A web-based Morse code learning tool that teaches users how to encode messages using the Morse code alphabet.",
+      "technologies": ["HTML", "JavaScript", "CSS"],
+      "github": "https://github.com/RickyRCoding/morse-practice-web",
+      "website": "https://rickyrcoding.github.io/morse-practice-web/"
+    },
+    {
+      "title": "Pi Memorizing Game",
+      "date": "January 2026",
+      "description": "A web-based game that challenges users to type in the digits of pi. It features a clean interface and tracks the user's input's automatically.",
+      "technologies": ["HTML", "JavaScript", "CSS"],
+      "github": "https://github.com/RickyRCoding/PI-MEMORIZING-GAME",
+      "website": "https://rickyrcoding.github.io/PI-MEMORIZING-GAME/"
+    },
+    {
+      "title": "Why Chatbot Mobile App",
+      "date": "January 2024",
+      "description": "Chatbot mobile app that I built to learn Flutter and Dart. It has a simple interface where users can ask questions and receive random, pre-programmed responses.",
+      "technologies": ["Dart", "Flutter", "C++"],
+      "github": "https://github.com/RickyRCoding/Why"
+    },
+    {
+      "title": "Strikify, A School Project",
+      "date": "December 2023",
+      "description": "A fake shopping website created for a school Shark Tank project. It allows users to browse and shop custom mechanical keyboard keycaps through a simple interface.",
+      "technologies": ["React.js", "Next.js", "CSS"],
+      "github": "https://github.com/RickyRCoding/Strikify",
+      "website": "https://rickyrcoding.github.io/Strikify"
+    },
+    {
+      "title": "That One Nerdy Guy",
+      "date": "January 2023",
+      "description": "Small hub of 3 knowledge-based games that I built for fun. It includes a quiz about capitals of the world, a math game, and a pi memorization game.",
+      "technologies": ["React.js", "Next.js", "CSS", "HTML", "JavaScript"],
+      "github": "https://github.com/RickyRCoding/thatonenerdyguy",
+      "website": "https://rickyrcoding.github.io/thatonenerdyguy/"
+    },
+    {
+      "title": "Old Portfolio Website",
+      "date": "December 2022",
+      "description": "My old portfolio website, which I built when I was 9 years old to practice CSS and HTML. It features a simple design and showcases my projects and skills.",
+      "technologies": ["CSS", "HTML", "JavaScript"],
+      "github": "https://github.com/RickyRCoding/Ricky-portofolio",
+      "website": "https://rickyrcoding.github.io/Ricky-portofolio/#home"
+    }
+  ]
+}
