@@ -160,10 +160,18 @@
   },
   "projects": [
     {
+      "title": "Ciao Italia!",
+      "date": "July 2026",
+      "description": "Preparing for a trip to Italy, I decided to code a website so I could learn some new phrases to prepare for my trip.",
+      "technologies": ["CSS", "HTML", "JavaScript", "Flask"],
+      "github": "https://github.com/RickyRCoding/italian-for-travelers",
+      "website": "https://italian-for-travelers.vercel.app/"
+    },
+    {
       "title": "Morse Code Academy",
       "date": "July 2026",
       "description": "A web-based Morse code learning tool that teaches users how to encode messages using the Morse code alphabet.",
-      "technologies": ["HTML", "JavaScript", "CSS"],
+      "technologies": ["HTML", "JavaScript", "CSS", "Flask"],
       "github": "https://github.com/RickyRCoding/morse-practice-web",
       "website": "https://rickyrcoding.github.io/morse-practice-web/"
     },
@@ -197,14 +205,6 @@
       "technologies": ["React.js", "Next.js", "CSS", "HTML", "JavaScript"],
       "github": "https://github.com/RickyRCoding/thatonenerdyguy",
       "website": "https://rickyrcoding.github.io/thatonenerdyguy/"
-    },
-    {
-      "title": "Old Portfolio Website",
-      "date": "December 2022",
-      "description": "My old portfolio website, which I built when I was 9 years old to practice CSS and HTML. It features a simple design and showcases my projects and skills.",
-      "technologies": ["CSS", "HTML", "JavaScript"],
-      "github": "https://github.com/RickyRCoding/Ricky-portofolio",
-      "website": "https://rickyrcoding.github.io/Ricky-portofolio/#home"
     }
   ]
 }
