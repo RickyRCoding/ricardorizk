@@ -58,6 +58,10 @@ body {
 }
 
 /* Logo */
+.logo {
+  margin-right: auto;
+}
+
 .logo a {
   font-size: 1.25rem;
   font-weight: 700;
@@ -109,6 +113,60 @@ body {
 
 .nav-link.active {
   color: var(--text-primary);
+}
+
+/* Social Navigation Bar and Icons */
+.desktop-nav-socials-container {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-left: 2.5rem;
+}
+
+.nav-divider {
+  width: 1px;
+  height: 20px;
+  background-color: var(--border-color);
+}
+
+.desktop-socials {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.social-icon-link {
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: transparent;
+  border: 1px solid transparent;
+  transition: color var(--transition-speed) var(--transition-ease),
+              background-color var(--transition-speed) var(--transition-ease),
+              border-color var(--transition-speed) var(--transition-ease),
+              transform var(--transition-speed) var(--transition-ease);
+}
+
+.social-icon-link:hover {
+  color: var(--text-primary);
+  background-color: var(--card-bg);
+  border-color: var(--border-color);
+  transform: translateY(-2px);
+}
+
+.social-icon-link svg {
+  width: 18px;
+  height: 18px;
+  stroke-width: 2;
+  transition: transform var(--transition-speed) var(--transition-ease);
+}
+
+.mobile-socials {
+  display: none;
 }
 
 /* Hamburger Button Styling */
@@ -727,6 +785,21 @@ h3 {
 
   .nav-link {
     font-size: 1.25rem;
+  }
+
+  .desktop-nav-socials-container {
+    display: none;
+  }
+
+  .mobile-socials {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-color);
+    width: 100%;
+    max-width: 160px;
   }
 
   /* Content & Grid adaptations */
