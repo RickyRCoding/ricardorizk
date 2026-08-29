@@ -162,6 +162,14 @@
   },
   "projects": [
     {
+      "title": "Math Sprint",
+      "date": "August 2026",
+      "description": "Simple website to practice mental arithmetic with account data and workout customization ",
+      "technologies": ["CSS", "HTML", "JavaScript"],
+      "github": "https://github.com/RickyRCoding/MathSprint",
+      "website": "https://math-sprinting.vercel.app/"
+    },
+    {
       "title": "Ciao Italia!",
       "date": "July 2026",
       "description": "Preparing for a trip to Italy, I decided to code a website so I could learn some new phrases to prepare for my trip.",
@@ -199,14 +207,6 @@
       "technologies": ["React.js", "Next.js", "CSS"],
       "github": "https://github.com/RickyRCoding/Strikify",
       "website": "https://rickyrcoding.github.io/Strikify"
-    },
-    {
-      "title": "That One Nerdy Guy",
-      "date": "January 2023",
-      "description": "Small hub of 3 knowledge-based games that I built for fun. It includes a quiz about capitals of the world, a math game, and a pi memorization game.",
-      "technologies": ["React.js", "Next.js", "CSS", "HTML", "JavaScript"],
-      "github": "https://github.com/RickyRCoding/thatonenerdyguy",
-      "website": "https://rickyrcoding.github.io/thatonenerdyguy/"
     }
   ]
 }
