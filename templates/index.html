@@ -8,9 +8,21 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}?v=4">
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}?v=5">
   <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='favicon.svg') }}">
   <style>
+    /* Hide scrollbars completely across all browsers */
+    *, html, body {
+      scrollbar-width: none !important;
+      -ms-overflow-style: none !important;
+    }
+    *::-webkit-scrollbar,
+    html::-webkit-scrollbar,
+    body::-webkit-scrollbar {
+      display: none !important;
+      width: 0 !important;
+      height: 0 !important;
+    }
     /* Inline critical cursor styles to prevent browser stylesheet cache issues */
     body.custom-cursor-ready,
     body.custom-cursor-ready * {
@@ -697,8 +709,6 @@
       let mouseY = window.innerHeight / 2;
       let ringX = mouseX;
       let ringY = mouseY;
-      let ringVx = 0;
-      let ringVy = 0;
       let initialized = false;
 
       const interactiveSelector = 'a, button, [role="button"], .nav-toggle, .social-icon-link, .project-link, .course-link-url, .contact-value.link';
@@ -757,12 +767,8 @@
 
       function animateCursor() {
         if (initialized) {
-          const dx = mouseX - ringX;
-          const dy = mouseY - ringY;
-          ringVx = (ringVx + dx * 0.24) * 0.64;
-          ringVy = (ringVy + dy * 0.24) * 0.64;
-          ringX += ringVx;
-          ringY += ringVy;
+          ringX += (mouseX - ringX) * 0.42;
+          ringY += (mouseY - ringY) * 0.42;
 
           ring.style.transform = `translate3d(${ringX.toFixed(2)}px, ${ringY.toFixed(2)}px, 0) translate(-50%, -50%)`;
         }
