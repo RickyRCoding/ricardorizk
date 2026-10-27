@@ -7,11 +7,101 @@
   <!-- Google Fonts for modern typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}?v=4">
   <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='favicon.svg') }}">
+  <style>
+    /* Inline critical cursor styles to prevent browser stylesheet cache issues */
+    body.custom-cursor-ready,
+    body.custom-cursor-ready * {
+      cursor: none !important;
+    }
+    .cursor-dot,
+    .cursor-ring {
+      position: fixed;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      z-index: 999999;
+      opacity: 0;
+      will-change: transform, width, height, border-radius, border-color, background-color, opacity;
+    }
+    body.custom-cursor-active .cursor-dot,
+    body.custom-cursor-active .cursor-ring {
+      opacity: 1;
+    }
+    .cursor-dot {
+      width: 6px;
+      height: 6px;
+      background-color: #111111;
+      border-radius: 0;
+      box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.75);
+      transform: translate3d(-100px, -100px, 0) translate(-50%, -50%);
+      transition: width 0.16s cubic-bezier(0.22, 1, 0.36, 1),
+                  height 0.16s cubic-bezier(0.22, 1, 0.36, 1),
+                  background-color 0.16s cubic-bezier(0.22, 1, 0.36, 1),
+                  opacity 0.15s ease;
+    }
+    .cursor-ring {
+      width: 28px;
+      height: 28px;
+      border: 1px solid rgba(17, 17, 17, 0.48);
+      border-radius: 2px;
+      background-color: transparent;
+      transform: translate3d(-100px, -100px, 0) translate(-50%, -50%);
+      transition: width 0.22s cubic-bezier(0.22, 1, 0.36, 1),
+                  height 0.22s cubic-bezier(0.22, 1, 0.36, 1),
+                  border-color 0.2s cubic-bezier(0.22, 1, 0.36, 1),
+                  background-color 0.2s cubic-bezier(0.22, 1, 0.36, 1),
+                  opacity 0.15s ease;
+    }
+    body.cursor-hover .cursor-dot {
+      width: 8px;
+      height: 8px;
+      background-color: #d94e34;
+    }
+    body.cursor-hover .cursor-ring {
+      width: 42px;
+      height: 42px;
+      border-color: #d94e34;
+      background-color: rgba(217, 78, 52, 0.07);
+    }
+    body.cursor-text:not(.cursor-hover) .cursor-dot {
+      width: 2px;
+      height: 20px;
+      background-color: #d94e34;
+    }
+    body.cursor-text:not(.cursor-hover) .cursor-ring {
+      width: 12px;
+      height: 28px;
+      border-color: rgba(17, 17, 17, 0.22);
+      background-color: transparent;
+    }
+    body.cursor-down .cursor-dot {
+      width: 10px;
+      height: 10px;
+      background-color: #d94e34;
+    }
+    body.cursor-down .cursor-ring {
+      width: 20px;
+      height: 20px;
+      border-color: #d94e34;
+      background-color: rgba(217, 78, 52, 0.15);
+    }
+    body.cursor-hidden .cursor-dot,
+    body.cursor-hidden .cursor-ring {
+      opacity: 0 !important;
+    }
+  </style>
 </head>
 <body>
+
+  <!-- Interactive Kinetic Physics Background -->
+  <canvas id="interactive-background" aria-hidden="true"></canvas>
+
+  <!-- Custom Cursor Set -->
+  <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+  <div class="cursor-ring" id="cursorRing" aria-hidden="true"></div>
 
   <!-- Navigation Bar -->
   <header class="navbar-header">
@@ -62,46 +152,52 @@
     
     <!-- Home Page -->
     <section id="home" class="page-section active">
-      <h1>Ricardo Rizk</h1>
-      <p class="hero-subtitle">{{ data.home.subtitle }}</p>
-      <p class="hero-description">{{ data.home.description }}</p>
-      
-      <div class="contact-card">
-        <div class="contact-item">
-          <span class="contact-label">Location</span>
-          <span class="contact-value">{{ data.home.location }}</span>
-        </div>
-        <div class="contact-item">
-          <span class="contact-label">Email</span>
-          <a href="mailto:{{ data.home.email }}" class="contact-value link">{{ data.home.email }}</a>
-        </div>
-        <div class="contact-item">
-          <span class="contact-label">Phone</span>
-          <a href="tel:{{ data.home.phone }}" class="contact-value link">{{ data.home.phone }}</a>
-        </div>
-        <div class="contact-item">
-          <span class="contact-label">GitHub</span>
-          <a href="https://github.com/{{ data.home.github }}" target="_blank" rel="noopener" class="contact-value link">github.com/{{ data.home.github }}</a>
-        </div>
-        <div class="contact-item">
-          <span class="contact-label">Instagram</span>
-          <a href="https://instagram.com/{{ data.home.instagram }}" target="_blank" rel="noopener" class="contact-value link">@{{ data.home.instagram }}</a>
+      <div class="surface-panel hero-panel">
+        <span class="section-eyebrow">Portfolio</span>
+        <h1>Ricardo Rizk</h1>
+        <p class="hero-subtitle">{{ data.home.subtitle }}</p>
+        <p class="hero-description">{{ data.home.description }}</p>
+        
+        <div class="contact-card">
+          <div class="contact-item">
+            <span class="contact-label">Location</span>
+            <span class="contact-value">{{ data.home.location }}</span>
+          </div>
+          <div class="contact-item">
+            <span class="contact-label">Email</span>
+            <a href="mailto:{{ data.home.email }}" class="contact-value link">{{ data.home.email }}</a>
+          </div>
+          <div class="contact-item">
+            <span class="contact-label">Phone</span>
+            <a href="tel:{{ data.home.phone }}" class="contact-value link">{{ data.home.phone }}</a>
+          </div>
+          <div class="contact-item">
+            <span class="contact-label">GitHub</span>
+            <a href="https://github.com/{{ data.home.github }}" target="_blank" rel="noopener" class="contact-value link">github.com/{{ data.home.github }}</a>
+          </div>
+          <div class="contact-item">
+            <span class="contact-label">Instagram</span>
+            <a href="https://instagram.com/{{ data.home.instagram }}" target="_blank" rel="noopener" class="contact-value link">@{{ data.home.instagram }}</a>
+          </div>
         </div>
       </div>
     </section>
 
     <!-- About Page -->
     <section id="about" class="page-section">
-      <h1>My Story</h1>
-      <p class="about-subtitle">{{ data.about.subtitle }}</p>
-      
-      <div class="about-content">
-        {% for paragraph in data.about.description %}
-          <p class="about-text">{{ paragraph }}</p>
-        {% endfor %}
+      <div class="surface-panel">
+        <span class="section-eyebrow">About</span>
+        <h1>My Story</h1>
+        <p class="about-subtitle">{{ data.about.subtitle }}</p>
+        
+        <div class="about-content">
+          {% for paragraph in data.about.description %}
+            <p class="about-text">{{ paragraph }}</p>
+          {% endfor %}
+        </div>
       </div>
 
-      <div class="hobbies-container">
+      <div class="surface-panel">
         <h2>What else I do</h2>
         <div class="hobbies-grid">
           {% for hobby, hobby_desc in data.about.whatelseido.items() %}
@@ -116,7 +212,10 @@
 
     <!-- Projects Page -->
     <section id="projects" class="page-section">
-      <h1>Featured Projects</h1>
+      <div class="surface-panel">
+        <span class="section-eyebrow">Selected Work</span>
+        <h1 style="margin-bottom: 0;">Featured Projects</h1>
+      </div>
       
       <div class="projects-list">
         {% for project in data.projects %}
@@ -146,7 +245,10 @@
 
     <!-- Resume Page -->
     <section id="resume" class="page-section">
-      <h1>Resume</h1>
+      <div class="surface-panel">
+        <span class="section-eyebrow">Curriculum Vitae</span>
+        <h1 style="margin-bottom: 0;">Resume</h1>
+      </div>
 
       <!-- 1. Experience & Education Row (Side-by-side) -->
       <div class="resume-row-grid">
@@ -332,6 +434,343 @@
         window.scrollTo({ top: 0, behavior: 'smooth' });
       });
     });
+
+    // Minimalist Architectural ASCII Field Background Engine
+    (() => {
+      const canvas = document.getElementById('interactive-background');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
+
+      const CELL = 22;
+      const CURSOR_RADIUS = 190;
+      const GLYPHS = ['·', ':', '-', '+', '=', '*', '#', '@'];
+
+      let width = 0;
+      let height = 0;
+      let dpr = 1;
+      let cols = 0;
+      let rows = 0;
+      let cells = [];
+      let pulses = [];
+      let animationFrameId = null;
+      let time = 0;
+
+      let baseColor = '#fbfbfa';
+      let inkRgb = '17, 17, 17';
+      let accentRgb = '217, 78, 52';
+
+      const pointer = {
+        x: -9999,
+        y: -9999,
+        vx: 0,
+        vy: 0,
+        speed: 0,
+        active: false
+      };
+
+      let lastScrollY = window.scrollY || 0;
+      let scrollOffset = 0;
+
+      function detectPalette() {
+        const styles = getComputedStyle(document.documentElement);
+        const bgPrimary = styles.getPropertyValue('--bg-primary').trim();
+        if (bgPrimary) {
+          baseColor = bgPrimary;
+        }
+      }
+
+      function initGrid() {
+        dpr = Math.min(window.devicePixelRatio || 1, 2);
+        width = window.innerWidth;
+        height = window.innerHeight;
+
+        canvas.width = width * dpr;
+        canvas.height = height * dpr;
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+        cols = Math.ceil(width / CELL) + 1;
+        rows = Math.ceil(height / CELL) + 1;
+
+        const offsetX = (width - (cols - 1) * CELL) / 2;
+        const offsetY = (height - (rows - 1) * CELL) / 2;
+
+        cells = new Array(rows * cols);
+        for (let r = 0; r < rows; r++) {
+          for (let c = 0; c < cols; c++) {
+            cells[r * cols + c] = {
+              x: offsetX + c * CELL,
+              y: offsetY + r * CELL,
+              r,
+              c,
+              energy: 0
+            };
+          }
+        }
+      }
+
+      function onMouseMove(e) {
+        const nx = e.clientX;
+        const ny = e.clientY;
+        if (pointer.active) {
+          const dx = nx - pointer.x;
+          const dy = ny - pointer.y;
+          pointer.vx = dx;
+          pointer.vy = dy;
+          pointer.speed = Math.min(40, Math.sqrt(dx * dx + dy * dy));
+        }
+        pointer.x = nx;
+        pointer.y = ny;
+        pointer.active = true;
+      }
+
+      function onMouseDown(e) {
+        pointer.x = e.clientX;
+        pointer.y = e.clientY;
+        pointer.active = true;
+        pulses.push({
+          x: e.clientX,
+          y: e.clientY,
+          radius: 0,
+          maxRadius: 420,
+          speed: 9.5
+        });
+      }
+
+      function onMouseLeave() {
+        pointer.active = false;
+        pointer.x = -9999;
+        pointer.y = -9999;
+        pointer.vx = 0;
+        pointer.vy = 0;
+        pointer.speed = 0;
+      }
+
+      function onScroll() {
+        const currentScrollY = window.scrollY || 0;
+        const delta = currentScrollY - lastScrollY;
+        lastScrollY = currentScrollY;
+        scrollOffset += delta * 0.012;
+      }
+
+      function onResize() {
+        detectPalette();
+        initGrid();
+      }
+
+      // Smooth multi-octave harmonic wave function [-1, 1]
+      function sampleField(c, r, t) {
+        const nx = c * 0.085;
+        const ny = r * 0.085 + scrollOffset;
+        const w1 = Math.sin(nx * 1.3 + t * 0.65 + Math.cos(ny * 1.1 - t * 0.45));
+        const w2 = Math.cos(ny * 1.5 - t * 0.55 + Math.sin(nx * 0.9 + t * 0.35));
+        const w3 = Math.sin((nx + ny) * 0.75 - t * 0.4);
+        return (w1 + w2 + w3) / 3;
+      }
+
+      function step() {
+        time += 0.016;
+
+        ctx.fillStyle = baseColor;
+        ctx.fillRect(0, 0, width, height);
+
+        for (let i = pulses.length - 1; i >= 0; i--) {
+          const p = pulses[i];
+          p.radius += p.speed;
+          if (p.radius >= p.maxRadius) {
+            pulses.splice(i, 1);
+          }
+        }
+
+        pointer.speed *= 0.9;
+
+        ctx.font = '500 11px "JetBrains Mono", "SFMono-Regular", Menlo, Monaco, Consolas, monospace';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+
+        const rSq = CURSOR_RADIUS * CURSOR_RADIUS;
+
+        for (let i = 0; i < cells.length; i++) {
+          const cell = cells[i];
+
+          // Base topographic field [0, 1]
+          const wave = (sampleField(cell.c, cell.r, time) + 1) * 0.5;
+
+          // Cursor proximity & wake energy
+          let targetEnergy = 0;
+          let angleGlyph = null;
+
+          if (pointer.active) {
+            const dx = cell.x - pointer.x;
+            const dy = cell.y - pointer.y;
+            const distSq = dx * dx + dy * dy;
+            if (distSq < rSq) {
+              const dist = Math.sqrt(distSq);
+              const falloff = 1 - dist / CURSOR_RADIUS;
+              targetEnergy = falloff * falloff * (0.75 + pointer.speed * 0.015);
+
+              // Directional vector character near cursor core
+              if (dist > 14 && dist < 85 && pointer.speed > 2.5) {
+                const angle = Math.atan2(dy, dx);
+                const norm = ((angle + Math.PI) / (Math.PI * 2)) * 4;
+                const dirIdx = Math.round(norm) % 4;
+                angleGlyph = ['—', '\\', '|', '/'][dirIdx];
+              }
+            }
+          }
+
+          // Click pulse ring energy
+          let pulseHit = 0;
+          for (let p = 0; p < pulses.length; p++) {
+            const pw = pulses[p];
+            const dx = cell.x - pw.x;
+            const dy = cell.y - pw.y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            const band = Math.abs(dist - pw.radius);
+            const bw = 34;
+            if (band < bw) {
+              const fade = (1 - band / bw) * (1 - pw.radius / pw.maxRadius);
+              if (fade > pulseHit) pulseHit = fade;
+            }
+          }
+
+          if (pulseHit > targetEnergy) {
+            targetEnergy = pulseHit;
+          }
+
+          // Smooth temporal decay so the ASCII trail lingers cleanly
+          if (targetEnergy > cell.energy) {
+            cell.energy += (targetEnergy - cell.energy) * 0.35;
+          } else {
+            cell.energy *= 0.91;
+          }
+
+          const combined = Math.min(1, wave * 0.42 + cell.energy * 0.85);
+
+          // Sparse thresholding: leave low-density zones completely blank or ultra-faint single dot
+          if (combined < 0.22 && (cell.r + cell.c) % 2 !== 0) {
+            continue;
+          }
+
+          let glyph;
+          if (angleGlyph && cell.energy > 0.35) {
+            glyph = angleGlyph;
+          } else {
+            const idx = Math.min(GLYPHS.length - 1, Math.floor(combined * GLYPHS.length));
+            glyph = GLYPHS[idx];
+          }
+
+          // Restrained monochrome ink with International Orange reserved for active energy peaks
+          if (cell.energy > 0.28 || pulseHit > 0.2) {
+            const alpha = Math.min(0.82, 0.22 + cell.energy * 0.65);
+            ctx.fillStyle = `rgba(${accentRgb}, ${alpha.toFixed(3)})`;
+          } else {
+            const alpha = 0.045 + Math.pow(combined, 1.6) * 0.22;
+            ctx.fillStyle = `rgba(${inkRgb}, ${alpha.toFixed(3)})`;
+          }
+
+          ctx.fillText(glyph, cell.x, cell.y);
+        }
+
+        animationFrameId = requestAnimationFrame(step);
+      }
+
+      detectPalette();
+      initGrid();
+
+      window.addEventListener('mousemove', onMouseMove, { passive: true });
+      window.addEventListener('mousedown', onMouseDown, { passive: true });
+      window.addEventListener('mouseleave', onMouseLeave, { passive: true });
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', onResize, { passive: true });
+
+      animationFrameId = requestAnimationFrame(step);
+    })();
+
+    // Sleek Multi-State Custom Cursor Controller
+    (() => {
+      const dot = document.getElementById('cursorDot');
+      const ring = document.getElementById('cursorRing');
+      if (!dot || !ring) return;
+
+      let mouseX = window.innerWidth / 2;
+      let mouseY = window.innerHeight / 2;
+      let ringX = mouseX;
+      let ringY = mouseY;
+      let ringVx = 0;
+      let ringVy = 0;
+      let initialized = false;
+
+      const interactiveSelector = 'a, button, [role="button"], .nav-toggle, .social-icon-link, .project-link, .course-link-url, .contact-value.link';
+      const textSelector = 'p, h1, h2, h3, h4, li, .contact-value:not(.link), .project-date, .course-date, .award-date, .timeline-date, .timeline-location';
+
+      function handlePointerMove(e) {
+        if (e.pointerType === 'touch') return;
+
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+
+        if (!initialized) {
+          ringX = mouseX;
+          ringY = mouseY;
+          initialized = true;
+          document.body.classList.add('custom-cursor-ready', 'custom-cursor-active');
+        }
+
+        document.body.classList.remove('cursor-hidden');
+        dot.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0) translate(-50%, -50%)`;
+
+        const target = e.target;
+        if (target && target.closest) {
+          if (target.closest(interactiveSelector)) {
+            document.body.classList.add('cursor-hover');
+            document.body.classList.remove('cursor-text');
+          } else if (target.closest(textSelector)) {
+            document.body.classList.add('cursor-text');
+            document.body.classList.remove('cursor-hover');
+          } else {
+            document.body.classList.remove('cursor-hover', 'cursor-text');
+          }
+        }
+      }
+
+      window.addEventListener('pointermove', handlePointerMove, { passive: true });
+      window.addEventListener('mousemove', handlePointerMove, { passive: true });
+
+      window.addEventListener('mousedown', () => {
+        document.body.classList.add('cursor-down');
+      }, { passive: true });
+
+      window.addEventListener('mouseup', () => {
+        document.body.classList.remove('cursor-down');
+      }, { passive: true });
+
+      document.addEventListener('mouseleave', () => {
+        document.body.classList.add('cursor-hidden');
+      }, { passive: true });
+
+      document.addEventListener('mouseenter', () => {
+        if (initialized) {
+          document.body.classList.remove('cursor-hidden');
+        }
+      }, { passive: true });
+
+      function animateCursor() {
+        if (initialized) {
+          const dx = mouseX - ringX;
+          const dy = mouseY - ringY;
+          ringVx = (ringVx + dx * 0.24) * 0.64;
+          ringVy = (ringVy + dy * 0.24) * 0.64;
+          ringX += ringVx;
+          ringY += ringVy;
+
+          ring.style.transform = `translate3d(${ringX.toFixed(2)}px, ${ringY.toFixed(2)}px, 0) translate(-50%, -50%)`;
+        }
+        requestAnimationFrame(animateCursor);
+      }
+
+      requestAnimationFrame(animateCursor);
+    })();
   </script>
 </body>
 </html>
